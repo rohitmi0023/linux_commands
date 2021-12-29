@@ -1,0 +1,84 @@
+*FROM "LEARNLINUXTV" channel under playlist "Linux Essentials"
+
+// to reduce the size to the given bytes
+truncate -s <size> <filename>
+Ex. truncate -s 0 mirrorlist
+
+// to copy
+cp <old file> <new file name>
+
+//opwning a tar file
+tar -vxzf <tarfile name>
+Flags: -v->Enables verbose mode, showing the progress of the command, -x->Extact, -z->uses gzip, omit this if you just have a .tar, -f->specifies file input, rather than STDIN. Creating a tar file is just as easy, just replace the -x with a -c to “Create".
+
+//setting a hostname
+sudo hostnamectl set-hostname <desired name>, use ".domain_name.com"
+
+//editing the host file
+sudo nano /etc/hosts
+
+//telling bash to execute the script
+bash <filename>
+
+//executing the script
+./<filename>
+
+//changing permissions
+chmod <770> <filename>, use -R flag for directories sub
+
+//changing ownership
+sudo chown <to_change_username>:<to_grp_username> <file>, -R flaf for directories
+
+//find command
+find /home/<username> -name *.txt -> meaning start from the given path, search by name ending with txt extension, can chain to serve diff purpose as below:
+| grep -v .cache->to remove .cache files
+-type d->search only directories, f for only files
+-exec rm {} +->exec for exectuting against every result, rm, {} placeholder for the actual item itself, + is terminator of the command
+* to find all mp3s and listing them to textfile
+find . -name *.mp3 > results.txt
+* reducing log files to 0 size
+sudo find /var/log -name *.log -exec truncate -s 0 {} +
+ 
+//using link->symbolic link or soft link
+ln -s <file_path> <to_file_path>
+*hard link is duplicate entry with same inode number, command is without s flag and providing new name of file to "to" path. Imp. Tip-> Use absolute path in sym link.
+
+//systemctl commands
+* systemctl status <system_name>->Self explanatory
+* systemctl list-unit-files --type=service->self explanatory
+* sudo systemctl enable --now <system_name>->combines the enable and start commands
+* sudo firewall-cmd --zone=public --permanent --add-service=<system_name>->disabling firewall
+* sudo systemctl stop <system_name>
+* sudo systemctl disable <sys_name>
+* sudo systemctl reload <sys_name>
+* sudo systemctl restart <sys_name>
+restart shuts down and restarts while reload just applies the changes to the open server
+
+//systemd services location
+usr/lib/systemd/system
+
+//formatting and mounting storage volumes
+lsblk->list all block devices
+mount | grep <block_name>->listing particular block details
+sudo umount <block_name/block_mountpoint>
+sudo mkfs->formatting the file partition with the desired file system
+sudo fdisk <block_name>->will let u in shell
+there, p->print, g->gpt, n->new partition, w->write
+sudo mkfs.<file type> -n "<name>" <block_name>
+df -h->list with %free space
+sudo mount <block_name> <to_path>->mounting to diff. location
+
+//managing users
+sudo useradd <user_name>->to add user, use -m flag to force to force to create home directory, -r to create system user
+sudo userdel <user_name>->delete user, use -r to delete home directory too
+sudo passwd <user_name>->creating/changing user's password
+
+//managing groups
+groups->to show under which grp is the current user 
+
+//randoms
+sudo ncdu->navigating files(sorted by size) to delete 
+| wc->word count
+/etc/passwd->to show diff. users
+/etc/fstab->automatically mounts storage devices
+| grep <search_word>->shows only lines containing the "search_word"

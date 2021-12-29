@@ -1,0 +1,7 @@
+download the tar file. Its a set of instructions that tells arch linux how to build the downloaded package which we will later install.
+Building the package:
+before turning the package build into an actual arch linux package, we will install some of commonly required dependencies using->sudo pacman -S base-devel. Now, use command->makepkg -s. "makepkg is a script to automate the building of packages".
+Folder will now contain '.pkg.tar.zst' file. To run->sudo pacman -U <package name>.
+
+
+https://www.youtube.com/watch?v=4e669hSjaX8&list=PLT98CRl2KxKHKd_tH3ssq0HPrThx2hESW&index=7
