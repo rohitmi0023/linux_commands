@@ -74,7 +74,22 @@ sudo userdel <user_name>->delete user, use -r to delete home directory too
 sudo passwd <user_name>->creating/changing user's password
 
 //managing groups
-groups->to show under which grp is the current user 
+groups->to show under which grp is the current user
+/etc/group->contains groups file
+sudo groupadd <group_name>->creating group
+sudo groupdel <group_name>->deleting group
+sudo usermod -aG <group_name> <user_name>->appending a user to a group
+sudo gpasswd -a <user_name> <group_name>->appending a user to a group
+
+//sed command
+sed -i '/s/<text_to_search>/<text_to_replace>' <file_name>
+
+//awk command
+awk '{print $0}' <file_name>, use -F'<whatever>' to customise delimiter
+
+//cron command
+crontab -e->to enter into shell/file, -l flag to list
+format->min. hour dom month dow command, @hourly/daily/reboot command
 
 //randoms
 sudo ncdu->navigating files(sorted by size) to delete 
