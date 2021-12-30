@@ -91,6 +91,31 @@ awk '{print $0}' <file_name>, use -F'<whatever>' to customise delimiter
 crontab -e->to enter into shell/file, -l flag to list
 format->min. hour dom month dow command, @hourly/daily/reboot command
 
+//public key authentication
+ssh-keygen -b 4096->generating SSH keypair
+ssh-copy-id <username>@<ip_address>
+
+//bash aliases
+alias <alias_name>="<command_name>"
+alias->listing all aliases
+unalias <alias_name> 
+
+//bg and fg
+jobs->lists all fg processes
+fg <number>->number is optional, defaults to last/recent one
+
+//user account and password expiration
+sudo chage -E <yyyy-mm-dd> <username>->set password expiration date for a user
+sudo chage -l <username>->checks user details
+sudo chage -M <num_of_days> <username>,-1 for infinity,
+sudo passwd -l <username>->locking user profile, replace l with u to unlock
+
+//data streams
+echo $?->returns data codes of last command, 0-Success, 1-failure
+
+//ps command
+ps->shows processes running in the current terminal, -x flag for all processes under user, -ajfx for cleaner display, -aux replaces uid with user column
+
 //randoms
 sudo ncdu->navigating files(sorted by size) to delete 
 | wc->word count
